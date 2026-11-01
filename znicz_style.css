@@ -1,0 +1,182 @@
+/* Reset i podstawowe style */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: radial-gradient(circle at center, #140d24 0%, #070410 70%, #000000 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Times New Roman', Times, serif;
+    color: #f5f0e1;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Klimatyczne, ciemne tło z ciepłą poświatą */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at center, rgba(230, 92, 0, 0.06) 0%, transparent 60%);
+    pointer-events: none;
+    animation: backgroundPulse 6s infinite alternate ease-in-out;
+}
+
+.container {
+    text-align: center;
+    z-index: 10;
+}
+
+h1 {
+    font-size: 2.6rem;
+    font-weight: 300;
+    margin-bottom: 12px;
+    color: #dfb76c;
+    text-shadow: 0 0 20px rgba(223, 183, 108, 0.2);
+}
+
+p {
+    font-style: italic;
+    font-size: 1.2rem;
+    color: #92879b;
+    margin-bottom: 60px;
+    letter-spacing: 1px;
+}
+
+/* --- TRADYCYJNY ZNICZ GLINIANY --- */
+.clay-candle {
+    position: relative;
+    width: 160px;
+    height: 180px;
+    margin: 0 auto;
+}
+
+/* Duży, żywy płomień (złożony z 3 warstw dla realizmu) */
+.flame-wrapper {
+    position: absolute;
+    bottom: 85px;
+    left: 50%;
+    width: 40px;
+    height: 75px;
+    transform-origin: center bottom;
+    animation: candleFlicker 1.2s infinite alternate ease-in-out;
+    z-index: 5;
+}
+
+.flame-red {
+    position: absolute;
+    bottom: 0; width: 100%; height: 100%;
+    background: linear-gradient(to bottom, transparent, #ff3700 70%, #cc1100 100%);
+    border-radius: 50% 50% 35% 35% / 65% 65% 35% 35%;
+    filter: blur(2px);
+}
+
+.flame-gold {
+    position: absolute;
+    bottom: 5px; left: 10%; width: 80%; height: 85%;
+    border-radius: 50% 50% 35% 35% ;
+}
+
+.flame-core {
+    position: absolute;
+    bottom: 12px; left: 25%; width: 50%; height: 60%;
+    background: linear-gradient(to bottom, #ffffff, #ffee77 60%, transparent 100%);
+    border-radius: 50% 50% 35% 35%;
+    z-index: 6;
+}
+
+/* Knot */
+.wick {
+    position: absolute;
+    bottom: 78px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 14px;
+    background: #1a1108;
+    border-radius: 3px;
+    z-index: 4;
+}
+
+/* Wosk wewnątrz naczynia */
+.wax {
+    position: absolute;
+    bottom: 72px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 136px;
+    height: 16px;
+    background: radial-gradient(ellipse at center, #ffdf85 0%, #aa7722 70%, #553300 100%);
+    border-radius: 50%;
+    z-index: 3;
+    box-shadow: inset 0 0 10px rgba(255, 200, 0, 0.5);
+}
+
+/* Gliniane naczynie */
+.clay-pot {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 140px;
+    height: 80px;
+    background: linear-gradient(135deg, #a04822 0%, #682a10 100%);
+    border-radius: 10px 10px 60px 60px;
+    box-shadow: 
+        inset -15px -15px 30px rgba(0,0,0,0.6), 
+        inset 10px 5px 120px rgba(255,100,50,0.2),
+        0 12px 25px rgba(0,0,0,0.2);
+    z-index: 2;
+}
+
+/* Krawędź naczynia (rant) */
+.pot-rim {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 140px;
+    height: 14px;
+    background: linear-gradient(to right, #803414, #b8542b, #541f0a);
+    border-radius: 50%;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+}
+
+/* Rozświetlenie wokół znicza od ognia */
+.fire-glow {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    height: 200px;
+    background: radial-gradient(circle at center, rgba(255, 120, 0, 0.2) 0%, rgba(255, 60, 0, 0.05) 50%, transparent 70%);
+    z-index: 1;
+    animation: glowFlicker 1.2s infinite alternate ease-in-out;
+}
+
+/* --- ANIMACJE --- */
+/* Dynamiczne, nieregularne mruganie żywego ognia */
+@keyframes candleFlicker {
+    0% { transform: translateX(-50%) scale(1) rotate(-1deg); }
+    25% { transform: translateX(-48%) scale(0.96, 1.05) rotate(1deg) skewX(1deg); }
+    50% { transform: translateX(-52%) scale(1.04, 0.94) rotate(-1.5deg); }
+    75% { transform: translateX(-49%) scale(0.95, 1.02) rotate(2deg) skewX(-1deg); }
+    100% { transform: translateX(-50%) scale(1.02, 0.98) rotate(0deg); }
+}
+
+/* Pulsowanie światła rzucanego na naczynie i tło */
+@keyframes glowFlicker {
+    0% { opacity: 0.8; transform: translateX(-50%) scale(0.98); }
+    100% { opacity: 1; transform: translateX(-50%) scale(1.05); }
+}
+
+@keyframes backgroundPulse {
+    0% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
